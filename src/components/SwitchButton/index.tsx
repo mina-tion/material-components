@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { FC } from 'react'
 import Switch from '@material-ui/core/Switch'
 import { FormControlLabel } from '@material-ui/core'
 import { styled } from '@material-ui/core'
 
-const SwitchButton = ({ component: Component, restricted, ...rest }: any): any => {
+interface IProps {
+  label?: string
+  thumbColor?: string
+  baseColor?: string
+}
+
+const SwitchButton: FC<IProps> = ({
+  component: Component,
+  restricted,
+  baseColor,
+  thumbColor,
+  label,
+  ...rest
+}: any): any => {
   const IOSSwitch = styled(props => (
     <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
   ))(({ theme }) => ({
@@ -19,7 +32,7 @@ const SwitchButton = ({ component: Component, restricted, ...rest }: any): any =
         transform: 'translateX(22.8px)',
         color: '#fff',
         '& + .MuiSwitch-track': {
-          backgroundColor: '#56D01C',
+          backgroundColor: baseColor ? baseColor : '#56D01C',
           opacity: 1,
           border: 0,
         },
@@ -39,6 +52,7 @@ const SwitchButton = ({ component: Component, restricted, ...rest }: any): any =
       },
     },
     '& .MuiSwitch-thumb': {
+      color: thumbColor ? thumbColor : '#FFFFFF',
       boxSizing: 'border-box',
       width: 16.5,
       height: 16.5,
@@ -55,7 +69,12 @@ const SwitchButton = ({ component: Component, restricted, ...rest }: any): any =
     },
   }))
 
-  return <FormControlLabel control={<IOSSwitch sx={{ m: 1 }} defaultChecked />} label="Open" />
+  return (
+    <FormControlLabel
+      control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
+      label={label ? label : 'Open'}
+    />
+  )
 }
 
 export default SwitchButton

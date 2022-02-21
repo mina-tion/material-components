@@ -4,11 +4,13 @@ import React from 'react'
 import styles from './styles.module.scss'
 import { useObserver } from 'mobx-react'
 import SwitchButton from 'components/SwitchButton'
+import Tags from 'components/Tags'
 
 const Main: React.FC = () => {
   return useObserver(() => (
     <main className={styles.container}>
-      <SwitchButton/>
+      <SwitchButton label='Open'/>
+      <Tags />
     </main>
   ))
 }

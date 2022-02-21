@@ -2,15 +2,15 @@ import { createContext, useContext } from 'react'
 import { configure, makeObservable, observable } from 'mobx'
 import remotedev from 'mobx-remotedev'
 
-import { UserStore } from './Users'
+import { TagsStore } from './Tags'
 
 configure({ enforceActions: 'observed' })
 @remotedev({ global: true })
 export class RootStore {
-  @observable usersStore: UserStore
+  @observable tagsStore: TagsStore
 
   constructor() {
-    this.usersStore = new UserStore(this)
+    this.tagsStore = new TagsStore(this)
 
     makeObservable(this)
   }
